@@ -1,6 +1,8 @@
 reddit-wallpaper-downloader
 ===========================
 
+[![Build Status](https://travis-ci.org/MoriTanosuke/reddit-wallpaper-downloader.svg)](https://travis-ci.org/MoriTanosuke/reddit-wallpaper-downloader)
+
 Simple java application to download images from reddit posts.
 
 Compiling

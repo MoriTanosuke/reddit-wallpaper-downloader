@@ -5,6 +5,12 @@ reddit-wallpaper-downloader
 
 Simple java application to download images from reddit posts.
 
+If you want an alternative for *bash*, here you go:
+
+```` bash
+wget -q -O - https://www.reddit.com/r/EarthPorn/top.json |grep --color -o -e '"url": "[^\"]*.[jpg|png]"'|awk -F: '{print $2":"$3}'|xargs wget
+````
+
 Compiling
 =========
 

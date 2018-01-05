@@ -4,9 +4,8 @@ deploy:
   provider: releases
   api_key:
     secure: "${OAUTH_TOKEN}"
-  file_glob: true
   skip_cleanup: true
-  file: "target/reddit-wallpaper-downloader-jar-with-dependencies.jarr"
+  file: "target/reddit-wallpaper-downloader-jar-with-dependencies.jar"
   on:
     repo: MoriTanosuke/reddit-wallpaper-downloader
 tags: true

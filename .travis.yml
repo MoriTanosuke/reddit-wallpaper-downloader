@@ -8,4 +8,4 @@ deploy:
   file: "target/reddit-wallpaper-downloader-jar-with-dependencies.jar"
   on:
     repo: MoriTanosuke/reddit-wallpaper-downloader
-tags: true
+#tags: true

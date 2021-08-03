@@ -41,10 +41,10 @@ public class UrlExtractor {
     public void run(String url) {
         System.out.println("Reading URLs from " + url);
         try {
-            URL u = new URL(url);
-            List posts = getPosts(u.openStream());
+            final var u = new URL(url);
+            final var posts = getPosts(u.openStream());
             for (int i = 0; i < posts.size(); i++) {
-                final String imageUrl = getUrlForPost(posts, i);
+                final var imageUrl = getUrlForPost(posts, i);
                 // check if image - by extension
                 if(isImage(imageUrl)) {
                     // TODO maybe check size?
@@ -59,16 +59,15 @@ public class UrlExtractor {
     private void download(File targetDirectory, String url) throws IOException {
         if(!targetDirectory.canWrite() || !targetDirectory.isDirectory()) throw new RuntimeException("Can not download to " + targetDirectory);
 
-        String fileName = getFilename(url);
-        URLConnection connection = new URL(url).openConnection();
-        File file = new File(targetDirectory, fileName);
+        final var fileName = getFilename(url);
+        final var connection = new URL(url).openConnection();
+        final var file = new File(targetDirectory, fileName);
         System.out.println("Downloading " + url + " to " + file);
-        try(InputStream stream = connection.getInputStream();
-            BufferedOutputStream outs = new BufferedOutputStream(new FileOutputStream(file));
+        try(final var stream = connection.getInputStream();
+            final var outs = new BufferedOutputStream(new FileOutputStream(file));
         ) {
-
+            var buf = new byte[1024];
             int len;
-            byte[] buf = new byte[1024];
             while ((len = stream.read(buf)) > 0) {
                 outs.write(buf, 0, len);
             }
@@ -80,7 +79,7 @@ public class UrlExtractor {
     }
 
     private boolean isImage(String imageUrl) {
-        for (String extension : ACCEPTABLE_EXTENSIONS) {
+        for (final var extension : ACCEPTABLE_EXTENSIONS) {
             if(imageUrl.endsWith(extension)) {
                 return true;
             }
@@ -90,7 +89,7 @@ public class UrlExtractor {
     }
 
     public String getUrlForPost(List listing, int postIndex) {
-        Map post = getPost(listing, postIndex);
+        final var post = getPost(listing, postIndex);
         return getUrl(post);
     }
 
@@ -103,8 +102,8 @@ public class UrlExtractor {
     }
 
     public List getPosts(InputStream input) {
-        Map obj = parse(input);
-        Map data = (Map) obj.get("data");
+        final var obj = parse(input);
+        final var data = (Map) obj.get("data");
         return (List) data.get("children");
     }
 
